@@ -16,14 +16,9 @@ def tangent(z1, z2, k1, k2):
     if type(k2) is complex: k2 = k2.real
     k1, k2 = sorted([k1, k2])
     if(k1 < 0.0):
-        # print(math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)]))
-        # print(1.0/k1)
-        # print(1.0/k2)
-        # print(1.0/k1-1.0/k2-math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)]))
-        # print(-1.0/k1-1.0/k2-math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)])==0)
-        return abs(-1.0/k1-1.0/k2-math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)]))<0.01
+        return abs(-1.0/k1-1.0/k2-math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)]))<0.0001
     else:
-        return abs(1.0/k1+1.0/k2-math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)]))<0.01
+        return abs(1.0/k1+1.0/k2-math.hypot(*[x1-x2 for x1,x2 in zip(pos1, pos2)]))<0.0001
 
 def descartes():
     c1,c2,c3 = queue[0:3]
@@ -55,8 +50,9 @@ def descartes():
             queue.append(c1)
             queue.append(c3)
 
-for i in range(10000):
+for i in range(20000):
     descartes()
+    # pos = list(set(pos))
 
 
 while QUIT not in [e.type for e in event.get()]:
